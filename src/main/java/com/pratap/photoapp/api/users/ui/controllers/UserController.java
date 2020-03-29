@@ -23,7 +23,7 @@ import com.pratap.photoapp.api.users.ui.model.CreateUserResponseModel;
 public class UserController {
 
 	@Autowired
-	UsersService userService;
+	UsersService usersService;
 
 	@Autowired
 	ModelMapper modelMapper;
@@ -39,7 +39,7 @@ public class UserController {
 			)
 	public ResponseEntity<CreateUserResponseModel> createUser(@Valid @RequestBody CreateUserRequestModel userDetails) {
 		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
-		UserDto serviceUserDetails = userService.createUser(userDto);
+		UserDto serviceUserDetails = usersService.createUser(userDto);
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(modelMapper.map(serviceUserDetails, CreateUserResponseModel.class));
 	}
